@@ -13,14 +13,16 @@ Source0:	http://downloads.sourceforge.net/zero-install/0install-%{version}.tar.b
 # Source0-md5:	00d567d9086d0b030ac610df6e4cb237
 URL:		http://0install.net/injector.html
 %if %{with tests}
+BuildRequires:	gettext
 BuildRequires:	gnupg
 BuildRequires:	python-coverage
-BuildRequires:	xdg-utils
-BuildRequires:	xz
+BuildRequires:	python-pygobject
+%if %(locale -a | grep -q '^en_US$'; echo $?)
+BuildRequires:	glibc-localedb-all
+%endif
 %endif
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
-BuildRequires:	python-devel
+BuildRequires:	python
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sed >= 4.0
 Requires:	applnk
